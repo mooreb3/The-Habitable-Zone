@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{physics}
+\usepackage{blindtext} %for enumarations
+
+\usepackage[]{hyperref}  %link collor
+
+%talbe layout to the right
+%\usepackage[labelfont=bf]{caption}
+%\captionsetup[table]{labelsep=space,justification=raggedright,singlelinecheck=off}
+%\captionsetup[figure]{labelsep=quad}
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+%\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+
+\setlength\parskip{4pt}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+\begin{document}
+\title{
+\normalfont \normalsize 
+\textsc{Trinity College Dublin} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge  The Habitable Zone \\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\author{  Benjamin Moore \\ 17327505\\ Prof. Aline A Vidotto} % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+\newpage
+
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+%\begin{multicols}{2}
+
+\section{Abstract}
+The aim of this computation experiment was to model the habitable zones (regions where terrestrial planets can have liquid water on it surface) of exoplanets (extrasolar planets) based upon the simplified equations given in \cite{source}, and test this model based upon well established laws and empirical results. 
+
+The original plots of the habitable zones shows values of exoplanets up to earth-like planets. The plot agreed with literature found in \cite{source} and the slightly less conservative expectation values of 0.99-1.7 AU in \cite{kop}.
+
+The second plot of exoplanets in orbit around stars less than 2 solar masses confirmed that a large number of earth-like planets have been detected orbiting F,G,K and M type stars. Even with the restrictions in measurement outlined in \cite{a}, and with current techniques greatly favouring the detection of larger mass exoplanets, this plot shows promising results with exciting projects such as the JWST and HabEx just over the horizon. 
+
+The third plot confirms that the planets studied follow Kepler's law with a relative error of 0.0171 which can be attributed to a multitude of factors, from measurement techniques, to environmental factors.
+
+The final plot highlights the heavily debated subject of low density exoplanets, as in \cite{Kepler9}. 
+
+
+
+
+\section{Introduction}
+The purpose of this computational assignment was to perform various plots of exoplanets, and their stars in relation to the habitable zone; a circumstellar region where a terrestrial planet can have liquid water on its surface. It should be noted that planets outside of the HZ may harbour subterranean life, however, the lack of biological markers make this type of life very difficult to detect \cite{tities}. With the success of the Kepler Space Telescope and TESS in surveying an unforeseen number of exoplanets, and the proposed projects such as HabEx, it is clear that currently, the more promising search for life is in the race for spectroscopic observation of Earth-like exoplanets. It also should be noted that the presence of a planet in the HZ does not guarantee habitable conditions, however, for the purpose of this assignment we did not deal with the other necessary atmospheric properties, such as a magnetic field. For a more comprehensive view of this topic see;
+Scalo et al. 2007; Zahnle et al. 2007; Kasting and Catling 2003; Lunine 1999; Gaidos and Selsis 2007.
+
+In our experiment we assume two properties to get around these other necessities for habitability.
+\begin{itemize}
+    \item The amount of water on the surface must be large enough for a surface pressure to allow temperature ranges from freezing to the critical point of water (273-647 K).
+    \item   $CO_2$ must accumulate whenever the mean surface temperature drops below the freezing point of water.
+\end{itemize}
+
+Another value that could be considered significant is the equilibrium temperature. Given by;
+\begin{equation}
+    T_{eq}=\frac{S{1-A}}{F\sigma}^{1/4}
+\end{equation}
+for habitability, generally this value must be lower than 270 K. The exception to this are thermophilic organisms who can tolerate temperatures as high as 394 K.
+
+Two terms that are mentioned throughout are albedo and opacity. Albedo is a measure of how much light can hit a surface and reflect without being absorbed. Opacity can be seen as its counterpart, and is the relative capacity of matter to obstruct the transmission of radiant energy.
+
+The simplified equations used to compute the inner and outer limits of the HZ for stars are given by;
+\begin{equation}
+    l_{in}=(l_{in_sun}-a_{in}T_*-b_{in}T_*^2)(\frac{L}{L_{sun}})^{\frac{1}{2}}
+\end{equation}
+and;
+\begin{equation}
+    l_{out}=(l_{out_sun}-a_{out}T_*-b_{out}T_*^2)(\frac{L}{L_{sun}})^{\frac{1}{2}}
+\end{equation}
+these equations assume that the planets have dynamic interior and a geophysical cycle similar to earths carbonate silicate cycle \cite{b}(the paper has a website linked to it that allows you to plot the habitable zones of different properties given the same, or similar equations). The equation is an empirical extrapolation around the HZ for our solar system.
+
+
+
+
+
+\section{Results}
+\subsection{Part 1: Plotting habitable zones as a function of Mass/Luminosity}
+By entering the values of luminosity and temperature into the extrapolated equation the following plot was produced.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=10cm]{fig1.png}
+    \caption{A Plot of Mass vs Orbital Distance, showing the habitable zones}
+    \label{fig:my_label}
+\end{figure}
+Below we see Venus (inner) and Early-Mars (outer) criterion are plotted for varying masses to find the orbital distance. They represent empirical limits to the HZ. The Early-Mars criterion is close to the zero cloud cover limit as seen in the diagram. This is because the defining factor in the atmospheric effect to lowering the albedo is $CO_2$ for the outer limit of the HZ. There is a limit where the cooling caused by the albedo is exceeded by the warming caused by the IR opacity of the $CO_2$ column \cite{tities}. The outer edge of the habitable zone faces runaway ice albedo effect, so greenhouse warming is essential to avoid this. This is why $CO_2$ levels are linked to the outer point to where a planet could be placed without freezing. However, geological and geochemical features indicating water was on Mars (over 3.5 Gy ago), but through greenhouse warming of some kind. This sets a lower bound of the upper limit of the HZ to be around 1.77 AU. The warming effect caused by $CO_2$ clouds and other greenhouse gases such as methane extend out this outer limit. This can be seen in the $100\%$ cloud cover plot which takes its constant for the limit around 2.4 AU.
+
+The Venus Criterion is an empirical inner limit to the HZ. Its relative distance at a time when it had liquid water is extrapolated through the same means as the empirical limit of the early mars criterion, by measuring how much dimmer the sun was at that time ($~1 Gy$ ago) and`multiplying its current distance by 
+\begin{equation}
+    \frac{1}{1-dimness(\%)}^{0.5}
+\end{equation}
+This puts the Venus criterion at $~0.75$ AU. It is worth noting that we are yet to prove that the water and deuterium on Venus was every condensed. The inner limit of the HZ is given by the $H_2O$ concentrations and water loss. With decreased distance from the sun there is a sharp increase in IR opacity heating the planet, and therefore the surface temperature of the planet. There is also a decrease in the albedo, as NIR may be absorbed by water vapour. A range of values can be taken as the inner limit of the HZ. The minimal limit is that of the runaway greenhouse limit which occurs at the critical point of water. Any closer to the star and it is not feasible for liquid water to exist at the surface under the expected surface temperature of 647 K. For the sun with its current luminosity this limit is at 0.84 AU. The other limit can be seen as the water loss limit of 0.95 AU, this is a more difficult limit to extrapolate as it is highly dependent on the background atmospheric pressure, and the vapour pressure of water. For Earth, a vapour pressure of 0.2 bar against an atmospheric pressure of 1 bar is sufficient for Hydrogen loss through diffusion to space to be energy limited. This limit is also very close to another considerable limit, the thermophilic limit, which is the upper tolerance temperature for hyperthermophilic prokaryotes (394 K). The orbital distance that would correspond to a surface temperature like this would be $~0.94 $ AU. For my plot I choose to use these limits closer to Earths conditions as they seem more empirically and intuitively inhabitable, although either may have been arguable.
+
+Clouds can be seen to effect the inner boundary of the HZ by increasing the albedo and reducing greenhouse warming. Thich clouds above the Rayleigh backscattering or absorbance levels are particularly effective in increasing the albedo, and thus move the habitable zone much closer to the star. Investigating 1 dimensional models of the cloud layers allow for up to 100\% coverage. Any intervening percent may be estimated by assuming that clouds do not affect the outgoing IR radiation. A cloud layer between 0.1 and 1 bar has the maximal effect on the albedo.
+
+\subsection{Part 2: Exoplanetary systems with stars less than 2 solar masses}
+In this section exoplanetary data sets were used to find earth-like planets, with a mass less than super-Earths, and there suns were plotted to see if they lied in the HZ. 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=10cm]{fig2.png}
+    \caption{Exoplanet Stars, with masses less than or greater than 5 solar masses plotted, showing the habitable zones}
+    \label{fig:my_label}
+\end{figure}
+
+It may be seen that a large number of earth-like planets have orbital distances inside the HZ of their stars.
+Stars less than 2 solar masses account for F,G,K and M type stars. K and M type stars have low effective temperatures, which means that their characteristic wavelengths peak in the Near Infra-Red. This applies extra limits to the HZ, as this radiation will cause extra warming. Also, they will have little contribution to albedo through Rayleigh backscattering, and there are strong $H_2O$ absorption for this wavelength. 
+According to new estimates by Kopparapu et al. the water loss and maximum greenhouse limits for stars represented in this task are at 0.99 and 1.70 AU respectively, putting Earth near the inner edge. This appears to agree with the top of my graph, around 1 solar mass. However, the model by Kopparapu did not include radiative effects of clouds, so the zone would be expected to extend further in both directions. 
+
+\subsection{Part 3: Kepler's Third Law}
+This part was used to verify Kepler's third law;
+\begin{equation}
+    P^2=\frac{4\pi^2a^3}{G(M+m)}
+\end{equation}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=10cm]{fig3.png}
+    \caption{A plot of log(a) Vs. log(P). a is the semi-major axis in AU and P is the period in days}
+    \label{fig:my_label}
+\end{figure}
+The linfit() function was used to find the y intercept and slope of the graph. The bestfit line was;
+\begin{equation}
+    y=1.4742432\times x + 2.5588323
+\end{equation}
+which by taking the square root of Kepler's law and applying log rules we would get;
+\begin{equation}
+    log_{10}(P)=log_{10}(\sqrt{\frac{4\pi^2}{G(M+m)}}) +\frac{3}{2}log_{10}(a)
+\end{equation}
+With y being $log_{10}(P)$ and x being $log_{10}(a)$ the slope of 1.4742.. is very close to that of Kepler's as 1.5. You can expect some error due to measurement techniques of these extra solar systems. You could also expect some variation due to gravitational tugs of other objects if it is a multi-planetary system. This could be an explanation as to why there is a spread in the results.  The intercept is dependent on the masses of the stars and their planets so the slope is sufficient to verify Kepler's law. 
+
+\newpage
+
+\subsection{Part 4: Densities of exoplanets}
+The mass of exoplanets plotted against their radii is plotted below. This plot is as a result of remarkable steps in attempting to accuratly measure the mass of these planets.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=10cm]{fig4.png}
+    \caption{Plot of exoplanet radii Vs. Mass in cgs units, with exoplanets plotted, and coloured due to their density, as seen with the colour bar. The four lines represent contours of continuous density}
+    \label{fig:my_label}
+\end{figure}
+Up until recently, the primary method of measuring the mass of exoplanets was through the Radial method, a method by which the mass of exoplanets could be estimated through the tug a planet would have on its host stars. This wobble allows us to infer the planet to star mass ratio.  This Doppler spectroscopy itself only gives the minimum mass of a planet. If the spectral lines of the atmosphere can be distinguished in transit, then the stars radial velocity can be discerned, and this give the inclination, which can be used to find the true mass.\cite{wel} However, for any earth-like planets, this tug would be so small that its effect would be difficult to detect with current technology. 
+Transit photometry is a well established method of searching for exoplanets. 
+For systems with multiple transiting planets, the times of transits may be measurably affected by the gravitational interactions between neighbouring planets. Transit photometry may also use the ingress/egress duration to determine various properties of the star, and coupled with the radial velocity of the planet may be used to determine the mass of the planet. This method has 2 clear drawbacks in that there is a low probabilty of perfect alignment for transit measurements, and that it has an alarmingly high rate of false detection.
+From the plot it can be observed that the densities of exoplanets are generally low compared to Earth, which has an average density of $5.51 g/cm^3$. This is due to the detection of predominantly high mass stars far away from their suns, or gas giants, who are known to have low densities. Recent projects have tried to measure the discrepancy between radial velocity and transit timing variations as methods of measuring mass due to the low densities of planets being discovered. One such project, analysing the system Kepler-9 found an agreement between the TTV method and high-precision RVs. The low densities of these planets place them in the super-Neptunes region of the mass-radius diagram.
+\section{Conclusion}
+In conclusion, the plots produced agreed with a lot of current theory concerning exoplanets. The plots of the habitable zones agree with the expected range of $~0.95-1.7$ AU. 
+
+The second plot shows that a large population of earth-like planets exist in the habitable zone of their stars, even with our current detection mechanisms favouring larger stars. 
+
+The 3rd plot confirmed Kepler's third law with a relative error in the slope of 
+\begin{equation}
+    \frac{1.5-1.4742432}{1.5}=0.0171
+\end{equation}
+This could be due to gravitational drag, or measurement errors as outlined in my results.
+
+
+The final plot showed trends in exoplanet densities that are currently a hot topic in the astrophysical world. However, they confirm the TTV and RV measurements of low densities in exoplanets, as in the case Kepler-9's exoplanets.
+
+
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{6}
+\bibitem{source} 
+F. Selsis, J. F. Kasting, B. Levrard, J. Paillet, I. Ribas, X. Delfosse
+\textit{Habitable planets around the star GI 581?}.
+Astronomy and Astrophysics, 476(3), December, 2007.
+\bibitem{zuut}
+J.F. Kasting, D.P. Whitmire, R.T. Reynolds.
+\textit{Habitable Zones around Main Sequence Stars}
+Icarus. 101. 108-28
+\bibitem{binary}
+L. Kaltenegger, N. Haghighipour.
+\textit{CALCULATING THE HABITABLE ZONE OF BINARY STAR SYSTEMS. I. S-TYPE BINARIES}
+The American Astronomical Society.777(2). October 2013.
+\bibitem{kop}
+R.K. Kopparapu, R.Ramirez, J. F. Kasting, V. Eymet.
+\textit{HABITABLE ZONES AROUND MAIN-SEQUENCE STARS: NEW ESTIMATES}
+The Astrophysical Journal, 765,(2). 2013
+
+\bibitem{hart}
+M. H. Hart.
+\textit{Habitable zones about main sequence stars}
+Icarus,37(1),351-357. January 1979.
+
+\bibitem{Kepler9}
+L. Borsato, L. Malavolta, G. Piotto, L. A. Buchhave.
+\textit{HARPS-N radial velocities confirm the low densities of the Kepler-9 planets }
+Monthly Notices of the Royal Astronomical Society, 484(3),3233–3243. April 2019.
+
+\bibitem{mass}
+D. J. Hutter, J. F. Rowe
+\textit{Mass of the Mars-sized Exoplanet Kepler-138 b from Transit Timing}
+Nature, 522, 321-323. 2015.
+
+%\end{multicols}
+
+\bibitem{a}
+J. L. Lissauer. et. al.
+\textit{A Closely-Packed System of Low-Mass, Low-Density Planets Transiting
+Kepler-11}
+1
+NASA Ames Research Center, Moffett Field, CA, 94035, USA
+\bibitem{tities}
+M.T. Rosing
+\textit{'Thermodynamics of Life on the planetary scale'.}
+International Journal of Astrobiology,4(9-11).
+
+\bibitem{b}
+T. Mueller, N. Haghighipour
+\textit{Calculating the Habitable Zone of Multiple Star Systems}
+The Astrophysical Journal, 782(1).2014
+
+
+\end{thebibliography}
+\end{document}
